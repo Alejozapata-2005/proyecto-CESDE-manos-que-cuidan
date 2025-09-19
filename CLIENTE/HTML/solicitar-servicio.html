@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Solicitar Servicio</title>
+ <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<body>
+ <script>
+      // Validación de rol
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "cliente"
+      ) {
+        window.location.href = "../LOGIN/login.html";
+      }
+    </script>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo"><img src="../../img/manos que cuidan.png" height="60"></div>
+    <ul class="sidebar-menu">
+      <li><a href="solicitar-servicio.html" class="active">📝 Solicitar Servicio</a></li>
+      <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
+      <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
+      <li><a href="calendario.html">📅 Calendario</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido -->
+  <div class="main-content">
+    <h1>Solicitar un Servicio</h1>
+    <form class="form-card" id="form-servicio">
+      <label for="tipo">Tipo de servicio:</label>
+      <select id="tipo" required>
+        <option value="">Seleccione</option>
+        <option value="acompañamiento">Acompañamiento</option>
+        <option value="citas-medicas">Citas médicas</option>
+        <option value="mercado">Compra de mercado</option>
+        <option value="aseo">Aseo en casa</option>
+        <option value="otros">Otros</option>
+      </select>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" required>
+
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" required>
+
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" placeholder="Ej: Calle 10 #45-23" required>
+
+      <label for="notas">Notas adicionales:</label>
+      <textarea id="notas" rows="3" placeholder="Ej: llevar tapabocas, traer mercado en bolsas ecológicas..."></textarea>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Solicitar</button>
+        <button type="reset" class="btn-secondary">Cancelar</button>
+        <button type="button" class="btn-danger">🚨 Botón de Emergencia</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("form-servicio").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("✅ Solicitud enviada correctamente. Pronto un asistente la tomará.");
+    });
+  </script>
+</body>
+<script src="../JS/script.js"></script>
+</html>

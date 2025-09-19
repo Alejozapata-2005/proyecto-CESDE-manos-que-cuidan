@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Calificar Servicio</title>
+<link rel="stylesheet" href="../CSS/style.css" />
+  <style>
+    .stars span {
+      font-size: 2rem;
+      cursor: pointer;
+      color: gray;
+    }
+    .stars span.active {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+ <script>
+      // Validación de rol
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "cliente"
+      ) {
+        window.location.href = "../LOGIN/login.html";
+      }
+    </script>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo"><img src="../../img/manos que cuidan.png" height="60"></div>
+    <ul class="sidebar-menu">
+      <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
+      <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
+      <li><a href="calificar-servicio.html" class="active">⭐ Calificar Servicio</a></li>
+      <li><a href="calendario.html">📅 Calendario</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido -->
+  <div class="main-content">
+    <h1>Calificar Servicio</h1>
+    <form class="form-card" id="form-calificacion">
+      <label for="servicio">Servicio:</label>
+      <select id="servicio">
+        <option value="">Seleccione</option>
+        <option value="S-101">S-101 - Acompañamiento</option>
+        <option value="S-102">S-102 - Cita médica</option>
+      </select>
+
+      <label>Calificación:</label>
+      <div class="stars" id="stars">
+        <span data-val="1">★</span>
+        <span data-val="2">★</span>
+        <span data-val="3">★</span>
+        <span data-val="4">★</span>
+        <span data-val="5">★</span>
+      </div>
+
+      <label for="comentario">Comentario:</label>
+      <textarea id="comentario" rows="4"></textarea>
+
+      <button type="submit" class="btn">Enviar Calificación</button>
+    </form>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('#stars span');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        stars.forEach(s => s.classList.remove('active'));
+        star.classList.add('active');
+        star.previousAll = [];
+        let prev = star.previousElementSibling;
+        while (prev) {
+          prev.classList.add('active');
+          prev = prev.previousElementSibling;
+        }
+      });
+    });
+
+    document.getElementById("form-calificacion").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("✅ Calificación enviada. ¡Gracias por tu opinión!");
+    });
+  </script>
+</body>
+<script src="../JS/script.js"></script>
+</html>

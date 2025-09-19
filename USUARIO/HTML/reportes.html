@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Reportes Diarios - Usuario</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+   <script>
+      // Validación de rol
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "usuario"
+      ) {
+        window.location.href = "../LOGIN/login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="servicios-dia.html">📅 Servicios del Día</a></li>
+        <li><a href="reportes.html" class="active">📝 Reportes</a></li>
+        <li><a href="perfil.html">👤 Perfil</a></li>
+        <li><a href="soporte.html">🛠️ Soporte</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li><a href="chat-admin.html">💬 Chat con Admin</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Reportes Diarios</h1>
+      <form class="form-card">
+        <label for="tipo-reporte">Reporte para:</label>
+        <select id="tipo-reporte" required>
+          <option value="">Seleccione</option>
+          <option value="admin">Administrador</option>
+          <option value="cliente">Cliente</option>
+        </select>
+
+        <label for="descripcion">Descripción del reporte:</label>
+        <textarea id="descripcion" rows="5"></textarea>
+
+        <label for="evidencia">Evidencia (opcional):</label>
+        <input type="file" id="evidencia" accept="image/*, .pdf" />
+
+        <button type="submit" class="btn">Enviar reporte</button>
+      </form>
+    </div>
+  </body>
+   <script src="../JS/script.js"></script>
+</html>

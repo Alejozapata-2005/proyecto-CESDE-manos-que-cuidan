@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Gestión de Cargos</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <script>
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "admin"
+      ) {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="panel-admin.html">📊 Panel</a></li>
+        <li><a href="reportes.html">📝 Reportes</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li>
+          <a href="gestion-cargos.html" class="active">⚙️ Gestión de Cargos</a>
+        </li>
+        <li><a href="promociones.html">🎉 Promociones</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Gestión de Cargos</h1>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Cargo Actual</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ana Torres</td>
+            <td>ana@correo.com</td>
+            <td>Cliente</td>
+            <td>
+              <select>
+                <option>Cliente</option>
+                <option>Usuario</option>
+                <option>Admin</option>
+              </select>
+              <button class="btn">Asignar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     
+  </body>
+  <script src="../JS/script.js"></script>
+</html>

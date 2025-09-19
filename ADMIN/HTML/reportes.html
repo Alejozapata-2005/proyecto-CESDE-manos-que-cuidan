@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Reportes - Admin</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+
+    <!-- Librería Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <script>
+      // Redirección si no es admin
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "admin"
+      ) {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="panel-admin.html">📊 Panel</a></li>
+        <li><a href="reportes.html" class="active">📝 Reportes</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li><a href="gestion-cargos.html">⚙️ Gestión de Cargos</a></li>
+        <li><a href="promociones.html">🎉 Promociones</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Gestión de Reportes</h1>
+
+      <!-- Filtros -->
+      <div class="filter-bar">
+        <label for="estado">Estado:</label>
+        <select id="estado">
+          <option value="todos">Todos</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="resuelto">Resueltos</option>
+        </select>
+
+        <label for="usuario">Usuario:</label>
+        <select id="usuario">
+          <option value="todos">Todos</option>
+          <option value="Trabajador 1">Trabajador 1</option>
+          <option value="Trabajador 2">Trabajador 2</option>
+        </select>
+
+        <label for="cliente">Cliente:</label>
+        <select id="cliente">
+          <option value="todos">Todos</option>
+          <option value="Cliente A">Cliente A</option>
+          <option value="Cliente B">Cliente B</option>
+        </select>
+
+        <button class="btn">Filtrar</button>
+      </div>
+
+      <!-- Tabla de reportes -->
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ID Reporte</th>
+            <th>Usuario</th>
+            <th>Cliente</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R-101</td>
+            <td>Trabajador 1</td>
+            <td>Cliente A</td>
+            <td>Incidente durante el servicio</td>
+            <td>15/09/2025</td>
+            <td><span class="status pendiente">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>R-102</td>
+            <td>Trabajador 2</td>
+            <td>Cliente B</td>
+            <td>Cliente no estaba en casa</td>
+            <td>14/09/2025</td>
+            <td><span class="status resuelto">Resuelto</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Gráficas -->
+      <div class="dashboard-charts">
+        <div class="chart-card">
+          <h2>Reportes: Pendientes vs Resueltos</h2>
+          <canvas id="estadoReportesChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h2>Distribución de Reportes por Tipo</h2>
+          <canvas id="tipoReportesChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script para gráficas -->
+    <script>
+      // Gráfica de estado de reportes
+      const estadoCtx = document
+        .getElementById("estadoReportesChart")
+        .getContext("2d");
+      new Chart(estadoCtx, {
+        type: "pie",
+        data: {
+          labels: ["Pendientes", "Resueltos"],
+          datasets: [
+            {
+              data: [12, 8],
+              backgroundColor: ["#e74c3c", "#2ecc71"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "bottom" },
+          },
+        },
+      });
+
+      // Gráfica de tipos de reportes
+      const tipoCtx = document
+        .getElementById("tipoReportesChart")
+        .getContext("2d");
+      new Chart(tipoCtx, {
+        type: "bar",
+        data: {
+          labels: ["Incidentes", "No asistencia", "Quejas"],
+          datasets: [
+            {
+              label: "Cantidad",
+              data: [5, 3, 2],
+              backgroundColor: ["#3498db", "#f1c40f", "#9b59b6"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+          },
+        },
+      });
+    </script>
+   
+  </body>
+   <script src="../JS/script.js"></script>
+</html>

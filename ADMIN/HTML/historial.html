@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Historial - Admin</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <script>
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "admin"
+      ) {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="panel-admin.html">📊 Panel</a></li>
+        <li><a href="reportes.html">📝 Reportes</a></li>
+        <li><a href="historial.html" class="active">📖 Historial</a></li>
+        <li><a href="gestion-cargos.html">⚙️ Gestión de Cargos</a></li>
+        <li><a href="promociones.html">🎉 Promociones</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Historial de Servicios</h1>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ID Servicio</th>
+            <th>Cliente</th>
+            <th>Usuario</th>
+            <th>Servicio</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S-2001</td>
+            <td>Juan Pérez</td>
+            <td>Trabajador 2</td>
+            <td>Acompañamiento</td>
+            <td>14/09/2025</td>
+            <td><span class="status completado">Completado</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     
+  </body>
+  <script src="../JS/script.js"></script>
+</html>

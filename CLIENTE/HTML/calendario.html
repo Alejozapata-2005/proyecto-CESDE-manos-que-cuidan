@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Calendario de Disponibilidad</title>
+ <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<body>
+<script>
+      // Validación de rol
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "cliente"
+      ) {
+        window.location.href = "../LOGIN/login.html";
+      }
+    </script>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo"><img src="../../img/manos que cuidan.png" height="60"></div>
+    <ul class="sidebar-menu">
+      <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
+      <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
+      <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
+      <li><a href="calendario.html" class="active">📅 Calendario</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido -->
+  <div class="main-content">
+    <h1>Calendario de Disponibilidad</h1>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Usuario</th>
+          <th>Horario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Lunes</td><td>Trabajador 1</td><td>08:00 - 16:00</td></tr>
+        <tr><td>Martes</td><td>Trabajador 2</td><td>10:00 - 18:00</td></tr>
+        <tr><td>Miércoles</td><td>Trabajador 3</td><td>12:00 - 20:00</td></tr>
+        <tr><td>Jueves</td><td>Trabajador 1</td><td>08:00 - 16:00</td></tr>
+        <tr><td>Viernes</td><td>Trabajador 2</td><td>09:00 - 17:00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+<script src="../JS/script.js"></script>
+</html>

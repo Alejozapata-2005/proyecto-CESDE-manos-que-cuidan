@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Servicios del Día - Usuario</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+  <script>
+      // Validación de rol
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "usuario"
+      ) {
+        window.location.href = "../LOGIN/login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="servicios-dia.html" class="active">📅 Servicios del Día</a>
+        </li>
+        <li><a href="reportes.html">📝 Reportes</a></li>
+        <li><a href="perfil.html">👤 Perfil</a></li>
+        <li><a href="soporte.html">🛠️ Soporte</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li><a href="chat-admin.html">💬 Chat con Admin</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Servicios asignados para hoy</h1>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Servicio</th>
+            <th>Hora</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juan Pérez</td>
+            <td>Cita médica</td>
+            <td>10:00 AM</td>
+            <td>Calle 45 #23-12</td>
+            <td><span class="status pendiente">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Ana Gómez</td>
+            <td>Compra de mercado</td>
+            <td>2:00 PM</td>
+            <td>Carrera 12 #54-08</td>
+            <td><span class="status completado">Completado</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+   <script src="../JS/script.js"></script>
+</html>

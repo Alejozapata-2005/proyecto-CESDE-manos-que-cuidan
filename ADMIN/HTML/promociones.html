@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Promociones - Admin</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <script>
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "admin"
+      ) {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="panel-admin.html">📊 Panel</a></li>
+        <li><a href="reportes.html">📝 Reportes</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li><a href="gestion-cargos.html">⚙️ Gestión de Cargos</a></li>
+        <li><a href="promociones.html" class="active">🎉 Promociones</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Gestión de Promociones</h1>
+      <form class="form-card">
+        <label for="titulo">Título de la promoción:</label>
+        <input type="text" id="titulo" />
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" rows="4"></textarea>
+
+        <label for="fecha">Fecha de vigencia:</label>
+        <input type="date" id="fecha" />
+
+        <button type="submit" class="btn">Agregar Promoción</button>
+      </form>
+
+      <h2>Promociones Activas</h2>
+      <ul class="promo-list">
+        <li>
+          <strong>Descuento del 10%</strong> en acompañamientos – Vigente hasta
+          30/09/2025
+        </li>
+      </ul>
+    </div>
+    
+  </body>
+   <script src="../JS/script.js"></script>
+</html>

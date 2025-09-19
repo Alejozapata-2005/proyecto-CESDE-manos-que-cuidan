@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+
+    <!-- Librería Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <script>
+      // Redirección si no es admin
+      if (
+        !localStorage.getItem("rol") ||
+        localStorage.getItem("rol") !== "admin"
+      ) {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="panel-admin.html" class="active">📊 Panel</a></li>
+        <li><a href="reportes.html">📝 Reportes</a></li>
+        <li><a href="historial.html">📖 Historial</a></li>
+        <li><a href="gestion-cargos.html">⚙️ Gestión de Cargos</a></li>
+        <li><a href="promociones.html">🎉 Promociones</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <h1>Panel de Administración</h1>
+
+      <!-- Tarjetas de resumen -->
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Usuarios activos</h3>
+          <p id="usuarios-activos">25</p>
+        </div>
+        <div class="card">
+          <h3>Servicios en curso</h3>
+          <p id="servicios-curso">12</p>
+        </div>
+        <div class="card">
+          <h3>Reportes pendientes</h3>
+          <p id="reportes-pendientes">5</p>
+        </div>
+        <div class="card">
+          <h3>Promociones activas</h3>
+          <p id="promociones-activas">3</p>
+        </div>
+      </div>
+
+      <!-- Gráficas -->
+      <div class="dashboard-charts">
+        <div class="chart-card">
+          <h2>Servicios por Mes</h2>
+          <canvas id="serviciosChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h2>Usuarios Activos</h2>
+          <canvas id="usuariosChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script para las gráficas -->
+    <script>
+      // Datos ficticios: Servicios por mes
+      const serviciosCtx = document
+        .getElementById("serviciosChart")
+        .getContext("2d");
+      new Chart(serviciosCtx, {
+        type: "bar",
+        data: {
+          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
+          datasets: [
+            {
+              label: "Servicios completados",
+              data: [30, 45, 50, 60, 40, 70],
+              backgroundColor: "#1abc9c",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+          },
+        },
+      });
+
+      // Datos ficticios: Usuarios activos
+      const usuariosCtx = document
+        .getElementById("usuariosChart")
+        .getContext("2d");
+      new Chart(usuariosCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Clientes", "Trabajadores", "Administradores"],
+          datasets: [
+            {
+              label: "Usuarios activos",
+              data: [15, 8, 2],
+              backgroundColor: ["#3498db", "#2ecc71", "#e74c3c"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "bottom" },
+          },
+        },
+      });
+    </script>
+     
+  </body>
+  <script src="../JS/script.js"></script>
+</html>
