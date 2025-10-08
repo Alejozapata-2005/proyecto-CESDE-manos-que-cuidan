@@ -8,15 +8,12 @@
 </head>
 <link rel="icon" href="/redsas/IMG/favicon-32x32.png" type="image/png">
 <body>
- <script>
-      // Validación de rol
-      if (
-        !localStorage.getItem("rol") ||
-        localStorage.getItem("rol") !== "cliente"
-      ) {
-        window.location.href = "../LOGIN/login.html";
-      }
-    </script>
+  <script>
+    // Validación de rol
+    if (!localStorage.getItem("rol") || localStorage.getItem("rol") !== "cliente") {
+      window.location.href = "../LOGIN/login.html";
+    }
+  </script>
 
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -26,15 +23,17 @@
       <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
       <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
       <li><a href="calendario.html">📅 Calendario</a></li>
+      <li class="logout"><a href="../../LOGIN/login.html" id="btnsalir">------ Cerrar Sesión------</a></li>
     </ul>
   </aside>
 
   <!-- Contenido -->
   <div class="main-content">
     <h1>Solicitar un Servicio</h1>
+
     <form class="form-card" id="form-servicio">
       <label for="tipo">Tipo de servicio:</label>
-      <select id="tipo" required>
+      <select id="tipo" name="tipo" required>
         <option value="">Seleccione</option>
         <option value="acompañamiento">Acompañamiento</option>
         <option value="citas-medicas">Citas médicas</option>
@@ -44,31 +43,90 @@
       </select>
 
       <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha" required>
+      <input type="date" id="fecha" name="fecha" required>
 
       <label for="hora">Hora:</label>
-      <input type="time" id="hora" required>
+      <input type="time" id="hora" name="hora" required>
 
       <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" placeholder="Ej: Calle 10 #45-23" required>
+      <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle 10 #45-23" required>
 
       <label for="notas">Notas adicionales:</label>
-      <textarea id="notas" rows="3" placeholder="Ej: llevar tapabocas, traer mercado en bolsas ecológicas..."></textarea>
+      <textarea id="notas" name="notas" rows="3" placeholder="Ej: llevar tapabocas, traer mercado en bolsas ecológicas..."></textarea>
 
       <div class="form-actions">
         <button type="submit" class="btn">Solicitar</button>
         <button type="reset" class="btn-secondary">Cancelar</button>
-        <button type="button" class="btn-danger">🚨 Botón de Emergencia</button>
+        <button type="button" id="btn-emergencia" class="btn-danger">🚨 Botón de Emergencia</button>
       </div>
     </form>
+
+    <div id="feedback" aria-live="polite" style="margin-top:12px;display:none;"></div>
   </div>
 
   <script>
-    document.getElementById("form-servicio").addEventListener("submit", e => {
+    // Manejo del formulario de solicitud (validaciones simples y placeholder para fetch)
+    const form = document.getElementById('form-servicio');
+    const feedback = document.getElementById('feedback');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert("✅ Solicitud enviada correctamente. Pronto un asistente la tomará.");
+      feedback.style.display = 'none';
+
+      const data = {
+        tipo: form.tipo.value,
+        fecha: form.fecha.value,
+        hora: form.hora.value,
+        direccion: form.direccion.value.trim(),
+        notas: form.notas.value.trim()
+      };
+
+      // Validación cliente
+      if (!data.tipo || !data.fecha || !data.hora || !data.direccion) {
+        feedback.style.display = 'block';
+        feedback.textContent = 'Por favor completa los campos obligatorios.';
+        feedback.style.color = 'red';
+        return;
+      }
+
+      // Mostrar estado de envío
+      feedback.style.display = 'block';
+      feedback.style.color = '#333';
+      feedback.textContent = 'Enviando solicitud...';
+
+      try {
+        // Si hay un backend, aquí se haría el fetch:
+        // const resp = await fetch(API_BASE_URL + '/requests', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token') }, body: JSON.stringify(data) });
+        // const result = await resp.json();
+
+        // Simulación de envío
+        await new Promise(r => setTimeout(r, 700));
+
+        feedback.style.color = 'green';
+        feedback.textContent = '✅ Solicitud enviada correctamente. Pronto un asistente la tomará.';
+        form.reset();
+      } catch (err) {
+        feedback.style.color = 'red';
+        feedback.textContent = 'Error al enviar la solicitud. Intenta nuevamente.';
+      }
     });
+
+    // Botón de emergencia: ejemplo de acción rápida
+    document.getElementById('btn-emergencia').addEventListener('click', () => {
+      alert('Se ha notificado una emergencia. Un asistente te contactará.');
+    });
+
+    // Handler de Cerrar Sesión (cliente)
+    const btnSalir = document.getElementById('btnsalir');
+    if (btnSalir) {
+      btnSalir.addEventListener('click', function (e) {
+        e.preventDefault();
+        try { localStorage.removeItem('rol'); localStorage.removeItem('nombre'); localStorage.removeItem('token'); } catch (err) {}
+        window.location.href = '../../LOGIN/login.html';
+      });
+    }
   </script>
+
+  <script src="../JS/script.js"></script>
 </body>
-<script src="../JS/script.js"></script>
 </html>

@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil - Cliente</title>
-  <link rel="stylesheet" href="../CSS/style.css">
-  <style>
-    /* --- Estilos propios del perfil --- */
-    .profile-container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    }
-    .profile-pic {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .profile-pic img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #ccc;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-    .form-actions {
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
-</head>
-<link rel="icon" href="/redsas/IMG/favicon-32x32.png" type="image/png">
-<body>
-<script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - Cliente</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <style>
+      /* --- Estilos propios del perfil --- */
+      .profile-container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .profile-pic {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .profile-pic img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ccc;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <link rel="icon" href="/redsas/IMG/favicon-32x32.png" type="image/png" />
+  <body>
+    <script>
       // Validación de rol
       if (
         !localStorage.getItem("rol") ||
@@ -58,81 +58,107 @@
       }
     </script>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <img src="../../img/manos que cuidan.png" alt="Logo" height="60">
-    </div>
-    <ul class="sidebar-menu">
-      <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
-      <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
-      <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
-      <li><a href="calendario.html">📅 Calendario</a></li>
-      <li><a href="perfil.html" class="active">👤 Mi Perfil</a></li>
-    </ul>
-  </aside>
-
-  <!-- Contenido -->
-  <div class="main-content">
-    <h1>Mi Perfil</h1>
-    <div class="profile-container">
-      <!-- Foto de perfil -->
-      <div class="profile-pic">
-        <img src="../img/default-user.png" id="preview" alt="Foto de Perfil">
-        <br>
-        <input type="file" id="foto" accept="image/*">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../img/manos que cuidan.png" alt="Logo" height="60" />
       </div>
+      <ul class="sidebar-menu">
+        <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
+        <li><a href="mis-solicitudes.html">📂 Mis Solicitudes</a></li>
+        <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
+        <li><a href="calendario.html">📅 Calendario</a></li>
+        <li><a href="perfil.html" class="active">👤 Mi Perfil</a></li>
+        <li class="logout">
+          <a href="../../LOGIN/login.html" id="btnsalir"
+            >------ Cerrar Sesión------</a
+          >
+        </li>
+      </ul>
+    </aside>
 
-      <!-- Formulario -->
-      <form id="perfil-form">
-        <div class="form-group">
-          <label for="nombre">Nombre completo:</label>
-          <input type="text" id="nombre" value="Cliente Demo">
-        </div>
-        <div class="form-group">
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" value="cliente@correo.com">
-        </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" value="3001234567">
-        </div>
-        <div class="form-group">
-          <label for="direccion">Dirección:</label>
-          <input type="text" id="direccion" value="Calle 10 #45-23">
-        </div>
-        <div class="form-group">
-          <label for="password">Contraseña:</label>
-          <input type="password" id="password" value="123456">
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Mi Perfil</h1>
+      <div class="profile-container">
+        <!-- Foto de perfil -->
+        <div class="profile-pic">
+          <img
+            src="../img/default-user.png"
+            id="preview"
+            alt="Foto de Perfil"
+          />
+          <br />
+          <input type="file" id="foto" accept="image/*" />
         </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn">Guardar cambios</button>
-          <button type="reset" class="btn-secondary">Restaurar</button>
-        </div>
-      </form>
+        <!-- Formulario -->
+        <form id="perfil-form">
+          <div class="form-group">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" value="Cliente Demo" />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" value="cliente@correo.com" />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" value="3001234567" />
+          </div>
+          <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" value="Calle 10 #45-23" />
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" value="123456" />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn">Guardar cambios</button>
+            <button type="reset" class="btn-secondary">Restaurar</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script>
-    // Preview de la imagen
-    document.getElementById("foto").addEventListener("change", function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(ev) {
-          document.getElementById("preview").src = ev.target.result;
-        };
-        reader.readAsDataURL(file);
+    <script>
+      // Preview de la imagen
+      document.getElementById("foto").addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (ev) {
+            document.getElementById("preview").src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Guardar cambios (simulado)
+      document
+        .getElementById("perfil-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("✅ Perfil actualizado correctamente.");
+        });
+    </script>
+    <script>
+      // Handler de Cerrar Sesión (cliente)
+      const btnSalir = document.getElementById("btnsalir");
+      if (btnSalir) {
+        btnSalir.addEventListener("click", function (e) {
+          e.preventDefault();
+          try {
+            localStorage.removeItem("rol");
+            localStorage.removeItem("nombre");
+            localStorage.removeItem("token");
+          } catch (err) {}
+          window.location.href = "../../LOGIN/login.html";
+        });
       }
-    });
-
-    // Guardar cambios (simulado)
-    document.getElementById("perfil-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("✅ Perfil actualizado correctamente.");
-    });
-  </script>
-</body>
-<script src="../JS/script.js"></script>
+    </script>
+  </body>
+  <script src="../JS/script.js"></script>
 </html>

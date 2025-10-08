@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Mis Solicitudes</title>
-<link rel="stylesheet" href="../CSS/style.css" />
-</head>
-<link rel="icon" href="/redsas/IMG/favicon-32x32.png" type="image/png">
-<body>
-  <script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Mis Solicitudes</title>
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <link rel="icon" href="/redsas/IMG/favicon-32x32.png" type="image/png" />
+  <body>
+    <script>
       // Validación de rol
       if (
         !localStorage.getItem("rol") ||
@@ -18,63 +18,88 @@
       }
     </script>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-logo"><img src="../../img/manos que cuidan.png" height="60"></div>
-    <ul class="sidebar-menu">
-      <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
-      <li><a href="mis-solicitudes.html" class="active">📂 Mis Solicitudes</a></li>
-      <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>      <li><a href="calendario.html">📅 Calendario</a></li>
-    </ul>
-  </aside>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../img/manos que cuidan.png" height="60" />
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="solicitar-servicio.html">📝 Solicitar Servicio</a></li>
+        <li>
+          <a href="mis-solicitudes.html" class="active">📂 Mis Solicitudes</a>
+        </li>
+        <li><a href="calificar-servicio.html">⭐ Calificar Servicio</a></li>
+        <li><a href="calendario.html">📅 Calendario</a></li>
+        <li class="logout">
+          <a href="../../LOGIN/login.html" id="btnsalir"
+            >------ Cerrar Sesión------</a
+          >
+        </li>
+      </ul>
+    </aside>
 
-  <!-- Contenido -->
-  <div class="main-content">
-    <h1>Mis Solicitudes</h1>
+    <!-- Contenido -->
+    <div class="main-content">
+      <h1>Mis Solicitudes</h1>
 
-    <!-- Barra de filtros -->
-    <div class="filter-bar">
-      <label for="estado">Estado:</label>
-      <select id="estado">
-        <option value="todos">Todos</option>
-        <option value="pendiente">Pendientes</option>
-        <option value="completado">Completados</option>
-      </select>
-      <button class="btn">Filtrar</button>
+      <!-- Barra de filtros -->
+      <div class="filter-bar">
+        <label for="estado">Estado:</label>
+        <select id="estado">
+          <option value="todos">Todos</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="completado">Completados</option>
+        </select>
+        <button class="btn">Filtrar</button>
+      </div>
+
+      <!-- Tabla -->
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Servicio</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S-101</td>
+            <td>Acompañamiento</td>
+            <td>16/09/2025</td>
+            <td>9:00 AM</td>
+            <td><span class="status pendiente">Pendiente</span></td>
+            <td><button class="btn-danger">Cancelar</button></td>
+          </tr>
+          <tr>
+            <td>S-102</td>
+            <td>Cita médica</td>
+            <td>14/09/2025</td>
+            <td>3:00 PM</td>
+            <td><span class="status completado">Completado</span></td>
+            <td><button class="btn">Ver Detalle</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <!-- Tabla -->
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Servicio</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Estado</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>S-101</td>
-          <td>Acompañamiento</td>
-          <td>16/09/2025</td>
-          <td>9:00 AM</td>
-          <td><span class="status pendiente">Pendiente</span></td>
-          <td><button class="btn-danger">Cancelar</button></td>
-        </tr>
-        <tr>
-          <td>S-102</td>
-          <td>Cita médica</td>
-          <td>14/09/2025</td>
-          <td>3:00 PM</td>
-          <td><span class="status completado">Completado</span></td>
-          <td><button class="btn">Ver Detalle</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
-<script src="../JS/script.js"></script>
+    <script>
+      // Handler de Cerrar Sesión (cliente)
+      const btnSalir = document.getElementById("btnsalir");
+      if (btnSalir) {
+        btnSalir.addEventListener("click", function (e) {
+          e.preventDefault();
+          try {
+            localStorage.removeItem("rol");
+            localStorage.removeItem("nombre");
+            localStorage.removeItem("token");
+          } catch (err) {}
+          window.location.href = "../../LOGIN/login.html";
+        });
+      }
+    </script>
+  </body>
+  <script src="../JS/script.js"></script>
 </html>
