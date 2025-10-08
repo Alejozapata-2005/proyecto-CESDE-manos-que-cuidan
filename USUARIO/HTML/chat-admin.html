@@ -29,7 +29,8 @@
         <li><a href="perfil.html">👤 Perfil</a></li>
         <li><a href="soporte.html">🛠️ Soporte</a></li>
         <li><a href="historial.html">📖 Historial</a></li>
-        <li><a href="chat-admin.html" class="active">💬 Chat con Admin</a></li>
+        <li><a href="chat-admin.html" class="active">💬 Chat con Admin</a></li>`
+       <li class="logout"><a href="../../LOGIN/login.html" id="btnsalir">------ Cerrar Sesion------</a></li>
       </ul>
     </aside>
 
@@ -53,6 +54,22 @@
         </form>
       </div>
     </div>
+    <script>
+      // Handler de Cerrar Sesión (usuario)
+      const btnSalir = document.getElementById('btnsalir');
+      if (btnSalir) {
+        btnSalir.addEventListener('click', function (e) {
+          e.preventDefault();
+          try {
+            localStorage.removeItem('rol');
+            localStorage.removeItem('nombre');
+            localStorage.removeItem('token');
+          } catch (err) {}
+          window.location.href = '../../LOGIN/login.html';
+        });
+      }
+    </script>
+
   </body>
    <script src="../JS/script.js"></script>
 </html>

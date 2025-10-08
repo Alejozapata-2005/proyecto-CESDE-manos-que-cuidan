@@ -231,6 +231,21 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
   list-style: none;
 }
 
+.sidebar-menu li.logout{
+  margin-top: 10px;
+}
+
+.sidebar-menu li.logout a{
+  background: red;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.4;
+}
+
 .sidebar-menu li {
   margin-bottom: 10px;
 }

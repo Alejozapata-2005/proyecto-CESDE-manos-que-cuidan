@@ -22,7 +22,7 @@
   --font-size-h3: 22px;
 }
 
-/* Soporte para modo oscuro */
+/* Soporte para modo oscuro
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #000000;
@@ -51,7 +51,7 @@
     border-color: #444;
     color: var(--text-color);
   }
-}
+} */
 
 /* Reset y estilos base */
 * {

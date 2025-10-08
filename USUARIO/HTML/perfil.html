@@ -20,6 +20,24 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
+  
+  <script>
+    // Handler de Cerrar Sesión (usuario)
+    const btnSalir = document.getElementById('btnsalir');
+    if (btnSalir) {
+      btnSalir.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Limpiar datos de sesión/localStorage
+        try {
+          localStorage.removeItem('rol');
+          localStorage.removeItem('nombre');
+          localStorage.removeItem('token');
+        } catch (err) { /* no-op */ }
+        // Redirigir al login
+        window.location.href = '../../LOGIN/login.html';
+      });
+    }
+  </script>
     <div class="sidebar-logo">
       <img src="../../IMG/manos que cuidan.png" alt="Logo" height="60">
     </div>
@@ -30,6 +48,8 @@
       <li><a href="soporte.html">🛠️ Soporte</a></li>
       <li><a href="historial.html">📖 Historial</a></li>
       <li><a href="chat-admin.html">💬 Chat con Admin</a></li>
+      <li class="logout"><a href="../../LOGIN/login.html" id="btnsalir">------ Cerrar Sesion------</a></li>
+
     </ul>
   </aside>
 
